@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
 const users = require("../models/user");
 
 const findAllUsers = async (req, res, next) => {
@@ -85,9 +85,9 @@ const deleteUser = async (req, res, next) => {
 const hashPassword = async (req, res, next) => {
   try {
     // Создаем случайную строку длиной в десять символов
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcryptjs.genSalt(10);
     // Хешируем пароль
-    const hash = await bcrypt.hash(req.body.password, salt);
+    const hash = await bcryptjs.hash(req.body.password, salt);
     // Полученный в запросе пароль подменяем на хеш
     req.body.password = hash;
     next();
